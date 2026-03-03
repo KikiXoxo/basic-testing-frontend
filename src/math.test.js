@@ -43,3 +43,23 @@ it('should yield a correct sum if an array of numeric string values is provided'
   expect(result).toBe(expectedResult);
 });
 //For this test case, currently the output is '012' instead of 3, which is a bug in the add function. This test case helps us catch that bug and fix it.
+
+it('should yield 0 if an empty array is provided', () => {
+  const numbers = [];
+
+  const result = add(numbers);
+
+  expect(result).toBe(0);
+});
+
+it('should throw an error if no value is passed into the function', () => {
+  // No Arrange stage here because we are not passing any values to the function
+
+  const resultFn = () => {
+    add();
+  };
+  // We define a function, and call the add function inside it without passing any values.
+  // This way, add is not called immediately the test runs, but only when resultFn is called. And resultFn is called by Vitest inside expect(), and when used in conjuction with toThrow(), the test is considered successful if an error is thrown when resultFn is called. If no error is thrown, the test will fail
+
+  expect(resultFn).toThrow();
+});
