@@ -22,3 +22,24 @@ it('should summarize all number values in an array', () => {
   const expectedResult = numbers.reduce((acc, num) => acc + num, 0); // We can use the reduce method to calculate the expected result instead of hardcoding it. This way, if we change the input array, we don't have to change the expected result manually.
   expect(result).toBe(expectedResult);
 });
+
+// Usually, you don't write a single test case for a function however.You write multiple test cases to cover different scenarios and edge cases
+
+it('should yield NaN if at least one invalid number is provided', () => {
+  const inputs = ['invalid', 1];
+
+  const result = add(inputs);
+
+  expect(result).toBeNaN();
+});
+// Writing different possible scenarios and the outcomes we want helps us catch bugs in the function we're testing eg currently, with the above test, while we wrote it to expect NaN, the reality is the output is '0invalid1' which is a bug in the add function. This is why writing multiple test cases is important to catch different bugs in the function, so we can fix them and make our function more robust.
+
+it('should yield a correct sum if an array of numeric string values is provided', () => {
+  const numbers = ['1', '2'];
+
+  const result = add(numbers);
+
+  const expectedResult = numbers.reduce((acc, num) => +acc + +num, 0);
+  expect(result).toBe(expectedResult);
+});
+//For this test case, currently the output is '012' instead of 3, which is a bug in the add function. This test case helps us catch that bug and fix it.
