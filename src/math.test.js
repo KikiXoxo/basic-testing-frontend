@@ -61,7 +61,7 @@ it('should throw an error if no value is passed into the function', () => {
   // We define a function, and call the add function inside it without passing any values.
   // This way, add is not called immediately the test runs, but only when resultFn is called. And resultFn is called by Vitest inside expect(), and when used in conjuction with toThrow(), the test is considered successful if an error is thrown when resultFn is called. If no error is thrown, the test will fail
 
-  expect(resultFn).toThrow();
+  expect(resultFn).toThrow(/is not iterable/);
 });
 
 it('should throw an error if provided with multiple arguments instead of an array', () => {
@@ -72,5 +72,5 @@ it('should throw an error if provided with multiple arguments instead of an arra
     add(num1, num2);
   };
 
-  expect(resultFn).toThrow();
+  expect(resultFn).toThrow(/is not iterable/);
 });
