@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { transformToNumber } from './numbers';
+import { cleanNumbers, transformToNumber } from './numbers';
 
 describe('transformToNumber()', () => {
   it('should transform a string number to a type number', () => {
@@ -27,5 +27,24 @@ describe('transformToNumber()', () => {
     };
 
     expect(resultFn).toThrow();
+  });
+});
+
+describe('cleanNumbers()', () => {
+  // This is considered an Integration Test, because the function being tested calls other functions within it, so we are testing the combination of these functions together. Because while those individual functions have their own unit tests that pass, sometimes an integration test is still necessary to see that these units key properly into each other
+  it('should return an array of number values if an array of string number values is provided', () => {
+    const numberValues = ['1', '2'];
+
+    const cleanedNumbers = cleanNumbers(numberValues);
+
+    expect(cleanedNumbers[0]).toBeTypeOf('number');
+  });
+
+  it('should throw an error if an array with at least one empty string is provided', () => {
+    const numberValues = ['', '1'];
+
+    const cleanFn = () => cleanNumbers(numberValues);
+
+    expect(cleanFn).toThrow();
   });
 });

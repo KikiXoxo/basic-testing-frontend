@@ -19,5 +19,5 @@ export function cleanNumbers(numberValues) {
     numbers.push(number);
   }
 
-  return numberValues;
+  return numbers;
 }
