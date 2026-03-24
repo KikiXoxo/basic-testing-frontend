@@ -37,7 +37,8 @@ describe('cleanNumbers()', () => {
 
     const cleanedNumbers = cleanNumbers(numberValues);
 
-    expect(cleanedNumbers[0]).toBeTypeOf('number');
+    // expect(cleanedNumbers[0]).toBeTypeOf('number');
+    expect(cleanedNumbers).toEqual([1, 2]); // This could also be done instead of the above, and you could say its better because it checks all the values of the array, and not just the first one. Note that toEqual was used here, and not toBe. toBe would not pass here because an array is not a primitive value. It is a reference type (as all objects are). toEqual checks for deep equality, so it works for reference types, while toBe checks for strict equality so it works for primitive value types.
   });
 
   it('should throw an error if an array with at least one empty string is provided', () => {
